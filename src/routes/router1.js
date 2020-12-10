@@ -10,7 +10,12 @@ const {
     deleteToto
 } = require("../controllers/todos");
 
-const {getPosts} = require("../controllers/post")
+const {
+    getPosts, 
+    getSinglePostById, 
+    hidenFieldCreatedAtUpdatedAt,
+    addPost
+} = require("../controllers/post");
 
 // todo
 router.get('/todos', getTotos);
@@ -21,5 +26,8 @@ router.delete('/todo/:id', deleteToto);
 
 // posts
 router.get("/posts", getPosts)
+router.get("/posthidenfield", hidenFieldCreatedAtUpdatedAt)
+router.get("/post/:id", getSinglePostById)
+router.post("/addpost", addPost)
 
 module.exports = router;
