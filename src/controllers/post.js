@@ -28,7 +28,7 @@ exports.getPosts = async (req, res) => {
     }
 }
 
-exports.hidenFieldCreatedAtUpdatedAt = async (req, res) => {
+exports.hiddenFieldCreatedAtUpdatedAt = async (req, res) => {
     try {
         const posts = await Post.findAll({
             attributes: {
@@ -70,7 +70,8 @@ exports.getSinglePostById = async (req, res) => {
         });
         if(!post){
             return res.status(400).send({
-                status: `Post with ID: ${id} not found`,
+                status: "Reasponse fail",
+                message: `Post with ID: ${id} not found`,
                 data: null,
             });
         }
@@ -117,7 +118,90 @@ exports.addPost = async (req, res) => {
         return res.status(500).send({
             error: {
                 message: "Server error",
-            }
+            },
+        });
+    }
+}
+
+exports.updatePost = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const {body} = req;
+
+        const getPostById = await Post.findOne({
+            where: {
+                id,
+            },
+        });
+        if (!getPostById){
+            return res.status(400).send({
+                status: "Response fail",
+                message: `Post with ID: ${id} not found`,
+                data: null,
+            });
+        }
+        else{
+            const post = await Post.update(body, {
+                where: {
+                    id,
+                },
+            });
+            const getPostAfterUpdate = await Post.findOne({
+                where:{
+                    id,
+                },
+            });
+            res.send({
+                status: "Response succsess.",
+                message: "Update data succsess.",
+                data: {
+                    post: getPostAfterUpdate,
+                },
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            error: {
+                message: "Server error",
+            },
+        });
+    }
+}
+
+exports.deletePost = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const getPostById = await Post.findOne({
+            where: {
+                id,
+            },
+        });
+        if (!getPostById){
+            return res.status(400).send({
+                status: "Response fail",
+                message: `Data Post with ID: ${id} not found`,
+                data: null,
+            });
+        }
+        else{
+            Post.destroy({
+                where: {
+                    id,
+                },
+            });
+            res.send({
+                status: "Response succsess.",
+                message: `Delete data with id: ${id} successfully.`,
+                data: null,
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            error: {
+                message: "Server error",
+            },
         });
     }
 }

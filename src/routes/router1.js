@@ -13,8 +13,10 @@ const {
 const {
     getPosts, 
     getSinglePostById, 
-    hidenFieldCreatedAtUpdatedAt,
-    addPost
+    hiddenFieldCreatedAtUpdatedAt,
+    addPost,
+    updatePost,
+    deletePost
 } = require("../controllers/post");
 
 // todo
@@ -26,8 +28,10 @@ router.delete('/todo/:id', deleteToto);
 
 // posts
 router.get("/posts", getPosts)
-router.get("/posthidenfield", hidenFieldCreatedAtUpdatedAt)
+router.get("/posthiddenfield", hiddenFieldCreatedAtUpdatedAt)
 router.get("/post/:id", getSinglePostById)
 router.post("/addpost", addPost)
+router.patch("/updatepost/:id", updatePost)
+router.delete("/deletepost/:id", deletePost)
 
 module.exports = router;
