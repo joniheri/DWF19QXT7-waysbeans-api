@@ -1,4 +1,4 @@
-// import model Pos
+// import function from models
 const { Post } = require("../../models");
 
 exports.getPosts = async (req, res) => {

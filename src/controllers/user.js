@@ -1,4 +1,6 @@
+// import function from models
 const { User, Profile, Skill } = require("../../models");
+
 const responSuccess = "Response success";
 
 //get Users
@@ -66,7 +68,7 @@ exports.getUsersHashToMany = async (req, res) => {
     });
     res.send({
       status: responSuccess,
-      message: "Get Users Hash One successfully",
+      message: "Get Users Hash Many successfully",
       data: users,
     });
   } catch (error) {

@@ -1,20 +1,27 @@
 // import function from models
-const { User, Profile } = require("../../models");
+const { Author, Book } = require("../../models");
 
 const responSuccess = "Response success";
 
-//get Profiles
-exports.getProfiles = async (req, res) => {
+//get Author hashMany Book
+exports.getAuthorsBelongsToManyBook = async (req, res) => {
   try {
-    const profiles = await Profile.findAll({
+    const authors = await Author.findAll({
       attributes: {
-        exclude: ["createdAt", "updatedAt", "userId", "UserId"],
+        exclude: ["createdAt", "updatedAt"],
+      },
+      include: {
+        model: Book,
+        as: "book",
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
       },
     });
     res.send({
       status: responSuccess,
-      message: "Get Profiles successfully",
-      data: profiles,
+      message: "Get Users Hash One successfully",
+      data: authors,
     });
   } catch (error) {
     console.log(error);
@@ -26,25 +33,27 @@ exports.getProfiles = async (req, res) => {
   }
 };
 
-// get ProfilesBelongsTo
-exports.getProfilesBelongsTo = async (req, res) => {
+//get Books hashMany Author
+exports.getBooksBelongsToManyAuthor = async (req, res) => {
   try {
-    const profiles = await Profile.findAll({
+    const books = await Book.findAll({
       attributes: {
-        exclude: ["createdAt", "updatedAt", "userId", "UserId"],
+        exclude: ["createdAt", "updatedAt"],
       },
       include: {
-        model: User,
-        as: "user",
+        model: Author,
+        as: "author",
         attributes: {
-          exclude: ["userid", "createdAt", "updatedAt", "userId", "UserId"],
+          exclude: ["createdAt", "updatedAt"],
         },
       },
     });
     res.send({
       status: responSuccess,
-      message: "Get Profile Belongs To successfully",
-      data: profiles,
+      message: "Get Books Belongs To Many successfully",
+      data: {
+        books,
+      },
     });
   } catch (error) {
     console.log(error);

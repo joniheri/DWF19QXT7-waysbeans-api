@@ -36,6 +36,12 @@ const { getProfiles, getProfilesBelongsTo } = require("../controllers/profile");
 // import skill function from controller
 const { getSkills, getSkillsBelongsTo } = require("../controllers/skill");
 
+// import AuthorBook function from controller
+const {
+  getBooksBelongsToManyAuthor,
+  getAuthorsBelongsToManyBook,
+} = require("../controllers/AuthorBook");
+
 // router for tbTodo
 router.get("/todos", getTotos);
 router.get("/todo/:id", getToto);
@@ -65,5 +71,9 @@ router.get("/profilesbelongsto", getProfilesBelongsTo);
 // router for  tbSkill
 router.get("/skills", getSkills);
 router.get("/skillsbelongsto", getSkillsBelongsTo);
+
+// router for  AuthorBook
+router.get("/authortomanybook", getAuthorsBelongsToManyBook);
+router.get("/booktosmanyauthor", getBooksBelongsToManyAuthor);
 
 module.exports = router;

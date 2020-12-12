@@ -1,4 +1,6 @@
+// import function from models
 const { User, Skill } = require("../../models");
+
 const responSuccess = "Response success";
 
 //get Skills
@@ -11,7 +13,7 @@ exports.getSkills = async (req, res) => {
     });
     res.send({
       status: responSuccess,
-      message: "Get Profiles successfully",
+      message: "Get Skills successfully",
       data: skills,
     });
   } catch (error) {
@@ -41,7 +43,7 @@ exports.getSkillsBelongsTo = async (req, res) => {
     });
     res.send({
       status: responSuccess,
-      message: "Get Profile Belongs To successfully",
+      message: "Get Skills Belongs To successfully",
       data: skills,
     });
   } catch (error) {
