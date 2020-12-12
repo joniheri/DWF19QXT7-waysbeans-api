@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Post', // --> 'post' ini adalah nama tabel di database
+    paranoid: true, // for soft delee
+    modelName: 'Post', // --> this 'post' is name of tabel in database
   });
   return Post;
 };
