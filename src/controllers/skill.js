@@ -1,10 +1,10 @@
-const { User, Profile } = require("../../models");
+const { User, Skill } = require("../../models");
 const responSuccess = "Response success";
 
-//get Profiles
-exports.getProfiles = async (req, res) => {
+//get Skills
+exports.getSkills = async (req, res) => {
   try {
-    const profiles = await Profile.findAll({
+    const skills = await Skill.findAll({
       attributes: {
         exclude: ["createdAt", "updatedAt", "userId", "UserId"],
       },
@@ -12,7 +12,7 @@ exports.getProfiles = async (req, res) => {
     res.send({
       status: responSuccess,
       message: "Get Profiles successfully",
-      data: profiles,
+      data: skills,
     });
   } catch (error) {
     console.log(error);
@@ -25,9 +25,9 @@ exports.getProfiles = async (req, res) => {
 };
 
 // get ProfilesBelongsTo
-exports.getProfilesBelongsTo = async (req, res) => {
+exports.getSkillsBelongsTo = async (req, res) => {
   try {
-    const profiles = await Profile.findAll({
+    const skills = await Profile.findAll({
       attributes: {
         exclude: ["createdAt", "updatedAt", "userId", "UserId"],
       },
@@ -42,7 +42,7 @@ exports.getProfilesBelongsTo = async (req, res) => {
     res.send({
       status: responSuccess,
       message: "Get Profile Belongs To successfully",
-      data: profiles,
+      data: skills,
     });
   } catch (error) {
     console.log(error);
