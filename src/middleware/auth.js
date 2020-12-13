@@ -26,7 +26,6 @@ exports.auth = (req, res, next) => {
       error: {
         message: "Invalid token",
       },
-      s,
     });
   }
 };

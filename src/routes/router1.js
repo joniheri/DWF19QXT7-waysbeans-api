@@ -87,15 +87,29 @@ router.get("/booktosmanyauthor", getBooksBelongsToManyAuthor);
 // =========================================================
 // task2
 // ---------------------------------------------------------
-// import userTask2 function from controller
+// import userTask2 from controller
 const { getUsersTask2, deleteUser } = require("../controllers/task2/user");
 
-// import auth function from controller
+// import product from controller
+const {
+  getProducts,
+  getProduct: ProductId,
+  addProductValidate2,
+  updateProduct,
+} = require("../controllers/task2/product");
+
+// import auth from controller
 const { register, login } = require("../controllers/task2/auth");
 
 // router for userTask2
 router.get("/users", getUsersTask2);
 router.delete("/user/:id", deleteUser);
+
+// router for product
+router.get("/products", getProducts);
+router.get("/product/:id", ProductId);
+router.post("/addproduct", addProductValidate2);
+router.patch("/updateproduct/:id", updateProduct);
 
 // router for auth
 router.post("/register", register);

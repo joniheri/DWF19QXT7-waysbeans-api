@@ -5,6 +5,7 @@ const { Post } = require("../../models");
 const Joi = require("joi");
 
 exports.getPosts = async (req, res) => {
+  console.log("reques dari midleware", req.userId.id);
   try {
     const posts = await Post.findAll();
     if (!posts) {
@@ -60,7 +61,7 @@ exports.hiddenFieldCreatedAtUpdatedAt = async (req, res) => {
     });
   }
 };
-
+// getPostById
 exports.getSinglePostById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -80,7 +81,7 @@ exports.getSinglePostById = async (req, res) => {
         status: "Respon success",
         message: `Get data by ID: ${id} data successfully`,
         data: {
-          data: null,
+          data: post,
         },
       });
     }
