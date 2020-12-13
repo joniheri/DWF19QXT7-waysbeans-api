@@ -1,6 +1,9 @@
 // import function from models
 const { Post } = require("../../models");
 
+// import joi
+const Joi = require("joi");
+
 exports.getPosts = async (req, res) => {
   try {
     const posts = await Post.findAll();
@@ -94,20 +97,40 @@ exports.getSinglePostById = async (req, res) => {
 exports.addPost = async (req, res) => {
   try {
     const { body } = req;
-    const post = await Post.create(body);
-    if (!post) {
-      return res.send({
-        status: "Respon fail",
-        data: "No data to send",
-      });
-    } else {
-      res.send({
-        status: "Response success",
-        message: "Add data successfully",
-        data: {
-          post,
+
+    const schema = Joi.object({
+      title: Joi.string().min(3).required(),
+      thumbnail: Joi.string().min(3),
+      description: Joi.string().min(5).required(),
+    });
+
+    //get function Joi "error" if any requireq input is null
+    const { error } = schema.validate(body);
+
+    //check if any input is null
+    if (error) {
+      return res.status(400).send({
+        status: "Validate input fail!",
+        error: {
+          message: error.details[0].message,
         },
       });
+    } else {
+      const post = await Post.create(body);
+      if (!post) {
+        return res.send({
+          status: "Respon fail",
+          data: "No data to send",
+        });
+      } else {
+        res.send({
+          status: "Response success",
+          message: "Add data successfully",
+          data: {
+            post,
+          },
+        });
+      }
     }
   } catch (error) {
     console.log(error);
