@@ -87,7 +87,7 @@ router.get("/booktosmanyauthor", getBooksBelongsToManyAuthor);
 const { getUsersTask2, deleteUser } = require("../controllers/task2/user");
 
 // import auth function from controller
-const { register } = require("../controllers/task2/auth");
+const { register, login } = require("../controllers/task2/auth");
 
 // router for userTask2
 router.get("/users", getUsersTask2);
@@ -95,6 +95,7 @@ router.delete("/user/:id", deleteUser);
 
 // router for auth
 router.post("/register", register);
+router.post("/login", login);
 // =========================================================
 
 module.exports = router;
