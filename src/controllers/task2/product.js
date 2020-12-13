@@ -44,7 +44,7 @@ exports.getProduct = async (req, res) => {
     if (!getProduct) {
       return res.status(400).send({
         status: "Reasponse fail",
-        message: `Post with ID: ${id} not found`,
+        message: `Data with ID: ${id} not found`,
         data: null,
       });
     }
@@ -164,33 +164,32 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-//delete user
-exports.deleteUser = async (req, res) => {
+//delete product
+exports.deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const getUseId = await Usertask2.findOne({
+    const getProductById = await Product.findOne({
       where: {
         id,
       },
     });
-    if (!getUseId) {
+    if (!getProductById) {
       return res.status(400).send({
-        status: "Response fail",
-        message: `Data User with ID: ${id} not found`,
+        status: "Response failed",
+        message: `Data with ID: ${id} not found`,
         data: null,
       });
-    } else {
-      await Usertask2.destroy({
-        where: {
-          id,
-        },
-      });
-      res.send({
-        status: responSuccess,
-        message: `Delete data with id: ${id} successfully.`,
-        data: id,
-      });
     }
+    await Product.destroy({
+      where: {
+        id,
+      },
+    });
+    res.send({
+      status: "Response success",
+      message: `Delete data with id: ${id} successfully.`,
+      data: id,
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).send({

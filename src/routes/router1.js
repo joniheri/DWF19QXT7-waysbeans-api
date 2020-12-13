@@ -96,6 +96,7 @@ const {
   getProduct: ProductId,
   addProductValidate2,
   updateProduct,
+  deleteProduct,
 } = require("../controllers/task2/product");
 
 // import auth from controller
@@ -110,6 +111,7 @@ router.get("/products", getProducts);
 router.get("/product/:id", ProductId);
 router.post("/addproduct", addProductValidate2);
 router.patch("/updateproduct/:id", updateProduct);
+router.delete("/deleteproduct/:id", deleteProduct);
 
 // router for auth
 router.post("/register", register);
