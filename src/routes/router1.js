@@ -44,6 +44,9 @@ const {
   getAuthorsBelongsToManyBook,
 } = require("../controllers/AuthorBook");
 
+// import file auth ffrom folder middleware
+const { auth: auhentic } = require("../middleware/auth");
+
 // router for tbTodo
 router.get("/todos", getTotos);
 router.get("/todo/:id", getToto);
@@ -53,6 +56,7 @@ router.delete("/todo/:id", deleteToto);
 
 // router for tbPosts
 router.get("/posts", getPosts);
+router.get("/postsauthentic", auhentic, getPosts); // Cek using authentication
 router.get("/posthiddenfield", hiddenFieldCreatedAtUpdatedAt);
 router.get("/post/:id", getSinglePostById);
 router.post("/addpost", addPost);
