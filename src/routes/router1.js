@@ -20,6 +20,8 @@ const {
   updatePost,
   deletePost,
   restorePost,
+  addPostValidate1,
+  addPostValidate2,
 } = require("../controllers/post");
 
 // import user function from controller
@@ -57,6 +59,8 @@ router.post("/addpost", addPost);
 router.patch("/updatepost/:id", updatePost);
 router.delete("/deletepost/:id", deletePost); // soft delete
 router.post("/restorepost/:id", restorePost); // restore data was deleted
+router.post("/addpostvalidate1", addPostValidate1); // input data with chek input validate1
+router.post("/addpostvalidate2", addPostValidate2); // input data with chek input validate1
 
 // router for  tbUser
 router.get("/users", getUsers);
