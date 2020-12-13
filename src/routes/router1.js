@@ -63,7 +63,7 @@ router.post("/addpostvalidate1", addPostValidate1); // input data with chek inpu
 router.post("/addpostvalidate2", addPostValidate2); // input data with chek input validate1
 
 // router for  tbUser
-router.get("/users", getUsers);
+router.get("/getusers", getUsers);
 router.get("/usershashone", getUsersHashOne);
 router.get("/usershashmany", getUsersHashToMany);
 router.get("/usershashonemany", getUsersHashOneMany);
@@ -76,8 +76,19 @@ router.get("/profilesbelongsto", getProfilesBelongsTo);
 router.get("/skills", getSkills);
 router.get("/skillsbelongsto", getSkillsBelongsTo);
 
-// router for  AuthorBook
+// router for AuthorBook
 router.get("/authortomanybook", getAuthorsBelongsToManyBook);
 router.get("/booktosmanyauthor", getBooksBelongsToManyAuthor);
+
+// =========================================================
+// task2
+// ---------------------------------------------------------
+// import userTask2 function from controller
+const { getUsersTask2, deleteUser } = require("../controllers/task2/user");
+
+// router for userTask2
+router.get("/users", getUsersTask2);
+router.delete("/user/:id", deleteUser);
+// =========================================================
 
 module.exports = router;
