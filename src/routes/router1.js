@@ -51,7 +51,7 @@ router.post("/todo/", addToto);
 router.put("/todo/:id", updateTodo);
 router.delete("/todo/:id", deleteToto);
 
-// router for  tbPosts
+// router for tbPosts
 router.get("/posts", getPosts);
 router.get("/posthiddenfield", hiddenFieldCreatedAtUpdatedAt);
 router.get("/post/:id", getSinglePostById);
@@ -62,7 +62,7 @@ router.post("/restorepost/:id", restorePost); // restore data was deleted
 router.post("/addpostvalidate1", addPostValidate1); // input data with chek input validate1
 router.post("/addpostvalidate2", addPostValidate2); // input data with chek input validate1
 
-// router for  tbUser
+// router for tbUser
 router.get("/getusers", getUsers);
 router.get("/usershashone", getUsersHashOne);
 router.get("/usershashmany", getUsersHashToMany);
@@ -72,7 +72,7 @@ router.get("/usershashonemany", getUsersHashOneMany);
 router.get("/profiles", getProfiles);
 router.get("/profilesbelongsto", getProfilesBelongsTo);
 
-// router for  tbSkill
+// router for tbSkill
 router.get("/skills", getSkills);
 router.get("/skillsbelongsto", getSkillsBelongsTo);
 
@@ -86,9 +86,15 @@ router.get("/booktosmanyauthor", getBooksBelongsToManyAuthor);
 // import userTask2 function from controller
 const { getUsersTask2, deleteUser } = require("../controllers/task2/user");
 
+// import auth function from controller
+const { register } = require("../controllers/task2/auth");
+
 // router for userTask2
 router.get("/users", getUsersTask2);
 router.delete("/user/:id", deleteUser);
+
+// router for auth
+router.post("/register", register);
 // =========================================================
 
 module.exports = router;
